@@ -17,6 +17,9 @@ def game_play(user_symbol, pc_symbol):
     space = {0: None, 1: " ", 2: " ", 3: " ", 4: " ", 5: " ", 6: " ", 7: " ", 8: " ", 9: " "}
 
     while len(spaces_played) < 9:
+        if space[1] and space[2] and space[3] == "X":
+            print("X Wins!")
+
         users_turn = True
         while users_turn and len(spaces_played) < 9:
             user_space_chosen = int(input("What space do you want to put your symbol? "))
