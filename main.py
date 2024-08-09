@@ -16,10 +16,9 @@ def game_grid(sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9):
 def game_play(user_symbol, pc_symbol):
     space = {0: None, 1: " ", 2: " ", 3: " ", 4: " ", 5: " ", 6: " ", 7: " ", 8: " ", 9: " "}
 
-
     while len(spaces_played) < 9:
         users_turn = True
-        while users_turn:
+        while users_turn and len(spaces_played) < 9:
             user_space_chosen = int(input("What space do you want to put your symbol? "))
             if user_space_chosen not in spaces_played:
                 if user_space_chosen in space:
@@ -28,7 +27,7 @@ def game_play(user_symbol, pc_symbol):
                     users_turn = False
 
         pc_turn = True
-        while pc_turn:
+        while pc_turn and len(spaces_played) < 9:
             pc_space_chosen = random.randint(1,9)
             if pc_space_chosen not in spaces_played:
                 if pc_space_chosen in space:
@@ -37,9 +36,9 @@ def game_play(user_symbol, pc_symbol):
                     pc_turn = False
 
         game_grid(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9])
-        print(len(spaces_played))
 
-    print("nine")
+    return
+
 
 game_over = False
 while not game_over:
