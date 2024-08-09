@@ -33,12 +33,6 @@ def game_play(user_symbol, pc_symbol):
 
     playing_game = True
     while playing_game:
-        # if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
-        #     playing_game = False
-        # elif len(spaces_played) == 9:
-        #     print("\nIt was a draw!")
-        #     playing_game = False
-
         users_turn = True
         while users_turn and len(spaces_played) < 9:
             if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
