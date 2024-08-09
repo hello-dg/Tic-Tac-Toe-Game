@@ -13,15 +13,41 @@ def game_grid(sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9):
     print(f"{top_vert_line}\n{top_horz_line}\n{middle_vert_line}\n{bottom_horz_line}\n{bottom_vert_line}")
 
 
+def check_for_win(sp1, sp2, sp3, sp4, sp5, sp6, sp7, sp8, sp9):
+    winning_plays = [(sp1, sp2, sp3), (sp4, sp5, sp6), (sp7, sp8, sp9),
+                     (sp1, sp4, sp7), (sp2, sp5, sp8), (sp3, sp6, sp9),
+                     (sp1, sp5, sp9), (sp7, sp5, sp8)]
+
+    if any(play == ("X", "X", "X") for play in winning_plays):
+        print("\nX Wins the Game!")
+        return True
+    elif any(play == ("O", "O", "O") for play in winning_plays):
+        print("\nO Wins the Game!")
+        return True
+    else:
+        return
+
+
 def game_play(user_symbol, pc_symbol):
     space = {0: None, 1: " ", 2: " ", 3: " ", 4: " ", 5: " ", 6: " ", 7: " ", 8: " ", 9: " "}
 
-    while len(spaces_played) < 9:
-        if space[1] and space[2] and space[3] == "X":
-            print("X Wins!")
+    playing_game = True
+    while playing_game:
+        # if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
+        #     playing_game = False
+        # elif len(spaces_played) == 9:
+        #     print("\nIt was a draw!")
+        #     playing_game = False
 
         users_turn = True
         while users_turn and len(spaces_played) < 9:
+            if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
+                playing_game = False
+                users_turn = False
+            elif len(spaces_played) == 9:
+                print("It was a draw!")
+                playing_game = False
+
             user_space_chosen = int(input("What space do you want to put your symbol? "))
             if user_space_chosen not in spaces_played:
                 if user_space_chosen in space:
@@ -31,6 +57,13 @@ def game_play(user_symbol, pc_symbol):
 
         pc_turn = True
         while pc_turn and len(spaces_played) < 9:
+            if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
+                playing_game = False
+                pc_turn = False
+            elif len(spaces_played) == 9:
+                print("It was a draw!")
+                playing_game = False
+
             pc_space_chosen = random.randint(1,9)
             if pc_space_chosen not in spaces_played:
                 if pc_space_chosen in space:
