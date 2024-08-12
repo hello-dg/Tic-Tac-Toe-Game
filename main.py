@@ -3,6 +3,7 @@ import time
 
 spaces_played = []
 
+# TO DO: After PC wins, still asks user to enter another space. Stop this.
 # TO DO: Ask user if they would like to play again.
 # TO DO: Change difficulty level by having PC block user when able.
 
@@ -38,16 +39,20 @@ def game_play(user_symbol, pc_symbol):
     playing_game = True
     while playing_game:
         users_turn = True
+        pc_turn = True
+
         while users_turn:
             if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
                 playing_game = False
                 users_turn = False
+                pc_turn = False
             elif len(spaces_played) == 9:
                 print("\nIt was a draw!")
                 users_turn = False
                 playing_game = False
+            else:
+                user_space_chosen = int(input("\nWhat space do you want to put your symbol? "))
 
-            user_space_chosen = int(input("\nWhat space do you want to put your symbol? "))
             if user_space_chosen not in spaces_played and users_turn:
                 if user_space_chosen in space:
                     space[user_space_chosen] = user_symbol
@@ -58,7 +63,6 @@ def game_play(user_symbol, pc_symbol):
 
         time.sleep(1)
 
-        pc_turn = True
         while pc_turn:
             if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
                 playing_game = False
@@ -67,8 +71,9 @@ def game_play(user_symbol, pc_symbol):
                 print("\nIt was a draw!")
                 pc_turn = False
                 playing_game = False
+            else:
+                pc_space_chosen = random.randint(1,9)
 
-            pc_space_chosen = random.randint(1,9)
             if pc_space_chosen not in spaces_played and pc_turn:
                 if pc_space_chosen in space:
                     space[pc_space_chosen] = pc_symbol
@@ -84,7 +89,7 @@ game_over = False
 while not game_over:
     print("Let's play Tic Tac Toe!\n")
     time.sleep(1)
-    print("Here's the board game and spaces:\n")
+    print("Here's the board game and spaces:")
     time.sleep(1)
     game_grid(1,2,3,4,5,6,7,8,9)
     time.sleep(1)
