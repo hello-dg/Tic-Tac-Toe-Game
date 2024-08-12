@@ -87,7 +87,8 @@ def game_play(user_symbol, pc_symbol):
 
 game_over = False
 while not game_over:
-    print("Let's play Tic Tac Toe!\n")
+    spaces_played = []
+    print("\nLet's play Tic Tac Toe!\n")
     time.sleep(1)
     print("Here's the board game and spaces:")
     time.sleep(1)
@@ -101,13 +102,17 @@ while not game_over:
             correct_option = True
             game_play("X","O")
 
-            game_over = True
+            time.sleep(1)
+            if input("\nDo you want to play again? Y or N: ").lower() == 'n':
+                game_over = True
 
         elif option_selected == 2:
             correct_option = True
             game_play("O","X")
 
-            game_over = True
+            time.sleep(1)
+            if input("\nDo you want to play again? Y or N: ").lower() == 'n':
+                game_over = True
 
         elif option_selected == 3:
             print("\nTic Tac Toe is a simple two-player game played on a 3x3 grid.\n"
