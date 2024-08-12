@@ -2,9 +2,9 @@ import random
 import time
 
 spaces_played = []
+user_score = 0
+pc_score = 0
 
-# TO DO: After PC wins, still asks user to enter another space. Stop this.
-# TO DO: Ask user if they would like to play again.
 # TO DO: Change difficulty level by having PC block user when able.
 
 
@@ -42,10 +42,13 @@ def game_play(user_symbol, pc_symbol):
         pc_turn = True
 
         while users_turn:
+            global pc_score
+            # Checks if PC won before allowing user to play
             if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
                 playing_game = False
                 users_turn = False
                 pc_turn = False
+                pc_score += 1
             elif len(spaces_played) == 9:
                 print("\nIt was a draw!")
                 users_turn = False
@@ -64,9 +67,12 @@ def game_play(user_symbol, pc_symbol):
         time.sleep(1)
 
         while pc_turn:
+            global user_score
+            # Checks if User won before allowing PC to play
             if check_for_win(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9]):
                 playing_game = False
                 pc_turn = False
+                user_score += 1
             elif len(spaces_played) == 9:
                 print("\nIt was a draw!")
                 pc_turn = False
@@ -88,9 +94,11 @@ def game_play(user_symbol, pc_symbol):
 game_over = False
 while not game_over:
     spaces_played = []
-    print("\nLet's play Tic Tac Toe!\n")
+    print("\nLet's play Tic Tac Toe!")
     time.sleep(1)
-    print("Here's the board game and spaces:")
+    print(f"\nCurrent Score is {user_score} - {pc_score}")
+    time.sleep(1)
+    print("\nHere's the board game and spaces:")
     time.sleep(1)
     game_grid(1,2,3,4,5,6,7,8,9)
     time.sleep(1)
@@ -104,6 +112,7 @@ while not game_over:
 
             time.sleep(1)
             if input("\nDo you want to play again? Y or N: ").lower() == 'n':
+                print(f"\nFinal Score: {user_score} - {pc_score}")
                 game_over = True
 
         elif option_selected == 2:
@@ -112,6 +121,7 @@ while not game_over:
 
             time.sleep(1)
             if input("\nDo you want to play again? Y or N: ").lower() == 'n':
+                print(f"\nFinal Score: {user_score} - {pc_score}")
                 game_over = True
 
         elif option_selected == 3:
