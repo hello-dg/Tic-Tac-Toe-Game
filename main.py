@@ -3,10 +3,6 @@ import time
 
 spaces_played = []
 
-# TO DO: When PC wins, it doesn't show the board
-# TO DO: If User wins, PC should not be able to place symbol on board again.
-# TO DO: Game ends when PC wins
-# TO DO: When its a draw at 9, it just keeps printing the board and doesn't stop.
 # TO DO: Ask user if they would like to play again.
 # TO DO: Change difficulty level by having PC block user when able.
 
