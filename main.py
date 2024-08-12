@@ -61,8 +61,6 @@ def game_play(user_symbol, pc_symbol):
                     users_turn = False
 
         time.sleep(1)
-        print("\nWaiting for the computer to make its move...")
-        time.sleep(1)
 
         pc_turn = True
         while pc_turn:
