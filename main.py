@@ -1,4 +1,5 @@
 import random
+import time
 
 spaces_played = []
 
@@ -50,12 +51,18 @@ def game_play(user_symbol, pc_symbol):
                 users_turn = False
                 playing_game = False
 
-            user_space_chosen = int(input("What space do you want to put your symbol? "))
+            user_space_chosen = int(input("\nWhat space do you want to put your symbol? "))
             if user_space_chosen not in spaces_played and users_turn:
                 if user_space_chosen in space:
                     space[user_space_chosen] = user_symbol
                     spaces_played.append(user_space_chosen)
+                    print(f"\nYou played space {user_space_chosen}:")
+                    game_grid(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9])
                     users_turn = False
+
+        time.sleep(1)
+        print("\nWaiting for the computer to make its move...")
+        time.sleep(1)
 
         pc_turn = True
         while pc_turn:
@@ -72,11 +79,9 @@ def game_play(user_symbol, pc_symbol):
                 if pc_space_chosen in space:
                     space[pc_space_chosen] = pc_symbol
                     spaces_played.append(pc_space_chosen)
+                    print(f"\nThe computer played space {pc_space_chosen}:")
+                    game_grid(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9])
                     pc_turn = False
-
-        # This game_grid shows after user wins because all code in PC block was False. But when PC wins
-        # this will not show because PC's win is checked in users code so we never make it here again.
-        game_grid(space[1], space[2], space[3], space[4], space[5], space[6], space[7], space[8], space[9])
 
     return
 
