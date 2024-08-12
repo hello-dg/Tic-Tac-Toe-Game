@@ -82,7 +82,12 @@ def game_play(user_symbol, pc_symbol):
 
 game_over = False
 while not game_over:
-    print("Let's play Tic Tac Toe!")
+    print("Let's play Tic Tac Toe!\n")
+    time.sleep(1)
+    print("Here's the board game and spaces:\n")
+    time.sleep(1)
+    game_grid(1,2,3,4,5,6,7,8,9)
+    time.sleep(1)
     correct_option = False
     while not correct_option:
         option_selected = int(input("\nOptions:\nPress 1 to be X's\nPress 2 to be O's\nPress 3 to Learn How to Play\n"))
